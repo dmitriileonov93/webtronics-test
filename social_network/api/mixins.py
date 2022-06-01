@@ -5,8 +5,6 @@ from rest_framework.response import Response
 
 from posts.models import Post, PostInLiked
 
-from users.utils import verify_email
-
 
 class PostLikedMixin:
     '''
@@ -30,7 +28,7 @@ class PostLikedMixin:
                     user=request.user
             ).exists():
                 return Response(
-                    {'errors': ['Статья уже в избранном.']},
+                    {'errors': ['Уже лайкали.']},
                     status=status.HTTP_400_BAD_REQUEST)
             PostInLiked.objects.create(
                 user=request.user, post=post
@@ -41,7 +39,7 @@ class PostLikedMixin:
                     user=request.user
             ).exists():
                 return Response(
-                    {'errors': ['Вы не добавляли статью с избранное.']},
+                    {'errors': ['Еще не лайкали.']},
                     status=status.HTTP_400_BAD_REQUEST)
             post.liked.get(user=request.user).delete()
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)

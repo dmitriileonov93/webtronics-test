@@ -19,8 +19,3 @@ class PostViewSet(viewsets.ModelViewSet, PostLikedMixin):
         При создании поста полю author присваивается текущий пользователь.
         '''
         serializer.save(author=self.request.user)
-
-
-
-
-
