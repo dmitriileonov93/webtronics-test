@@ -7,5 +7,7 @@ router = DefaultRouter()
 router.register('posts', PostViewSet, basename='posts')
 
 urlpatterns = [
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
     path('', include(router.urls)),
 ]
