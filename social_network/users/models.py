@@ -27,7 +27,7 @@ class User(AbstractUser):
             if data is not None:
                 self.first_name = data['name']['givenName']
                 self.last_name = data['name']['familyName']
-            email_verify_data = verify_email(self.email)
-            if email_verify_data['status'] == 'valid':
-                self.is_email_verified = True
+            # email_verify_data = verify_email(self.email)
+            # if email_verify_data['status'] == 'valid':
+            #     self.is_email_verified = True
         super().save(*args, **kwargs)
