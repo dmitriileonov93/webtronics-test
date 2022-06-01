@@ -5,6 +5,8 @@ from rest_framework.response import Response
 
 from posts.models import Post, PostInLiked
 
+from users.utils import verify_email
+
 
 class PostLikedMixin:
     '''

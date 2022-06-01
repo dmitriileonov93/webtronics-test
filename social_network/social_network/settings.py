@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'djoser',
     'users',
     'posts',
+    'drf_spectacular',
+    'clearbit',
 ]
 
 MIDDLEWARE = [
@@ -143,6 +145,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # SIMPLE_JWT
@@ -156,6 +159,22 @@ SIMPLE_JWT = {
 
 DJOSER = {
     'SERIALIZERS': {
-         'user_create': 'users.serializers.UserRegistrationSerializer'
-    }
+         'user_create': 'users.serializers.UserSerializer',
+         'user': 'users.serializers.UserSerializer',
+         'current_user': 'users.serializers.UserSerializer',
+    },
+    'HIDE_USERS': False,
 }
+
+# Docs
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Social Network API',
+    'DESCRIPTION': 'Test task for Webtronics',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+CLEARBIT_KEY = 'sk_bbb0544aa622bd7bd0845401da7cf69c'
+
+HUNTER_KEY = '1407bbd15c4e82b83cc6a4e42bd6df0fecd43488'
